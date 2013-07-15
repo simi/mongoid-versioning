@@ -1,6 +1,6 @@
 # Versioned documents for Mongoid4[![Build Status](https://travis-ci.org/simi/mongoid-versioning.png?branch=master)](https://travis-ci.org/simi/mongoid-versioning)
 
-# Not ready yet!
+# Not ready yet! (6 specs to go)
 
 Mongoid supports simple versioning through inclusion of the Mongoid::Versioning module. Including this module will create a versions embedded relation on the document that it will append to on each save. It will also update the version number on the document, which is an integer.
 
