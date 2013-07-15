@@ -9,7 +9,7 @@ Mongoid supports simple versioning through inclusion of the Mongoid::Versioning 
 Add this line to your application's Gemfile:
 
 ```ruby
-    gem 'mongoid-versioning', github: 'simi/mongoid-versioning'
+gem 'mongoid-versioning', github: 'simi/mongoid-versioning'
 ```
 
 And then execute:
