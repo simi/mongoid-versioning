@@ -1,16 +1,6 @@
+default_options = Mongoid::Fields::Validators::Macro::OPTIONS
 Mongoid::Fields::Validators::Macro.send(:remove_const, :OPTIONS)
-Mongoid::Fields::Validators::Macro.send(:const_set, :OPTIONS, [
-  :as,
-  :default,
-  :identity,
-  :label,
-  :localize,
-  :metadata,
-  :pre_processed,
-  :subtype,
-  :type,
-  :versioned
-])
+Mongoid::Fields::Validators::Macro.send(:const_set, :OPTIONS, default_options + [:versioned])
 
 module Mongoid
   module Fields
@@ -328,6 +318,32 @@ module Mongoid
         doc.run_callbacks(:find) unless doc._find_callbacks.empty?
         doc.run_callbacks(:initialize) unless doc._initialize_callbacks.empty?
         doc
+      end
+    end
+  end
+end
+
+module Mongoid
+  module Sessions
+    module ClassMethods
+      # Get the collection for this model from the session. Will check for an
+      # overridden collection name from the store_in macro or the collection
+      # with a pluralized model name.
+      #
+      # @example Get the model's collection.
+      #   Model.collection
+      #
+      # @return [ Moped::Collection ] The collection.
+      #
+      # @since 3.0.0
+      def collection
+        if opts = persistence_options
+          coll = mongo_session.with(opts)[opts[:collection] || collection_name]
+          clear_persistence_options unless validating_with_query? || _loading_revision?
+          coll
+        else
+          mongo_session[collection_name]
+        end
       end
     end
   end
