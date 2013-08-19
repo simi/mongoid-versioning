@@ -347,6 +347,20 @@ describe Mongoid::Versioning do
         it "does not create a new version" do
           version.should be_nil
         end
+
+        context "and revision is forced" do
+          before do
+            page.revise!
+          end
+
+          it "creates a new version" do
+            version.should_not be_nil
+          end
+
+          it "page version should be valid" do
+            page.version.should eq(2)
+          end
+        end
       end
 
       context "when saving over the number of maximum versions" do
