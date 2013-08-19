@@ -59,7 +59,7 @@ module Mongoid
     # @since 2.2.1
     def revise!
       versions.build(
-        (previous_revision || self).versioned_attributes, without_protection: true
+        (previous_revision || self).versioned_attributes
       )
       versions.shift if version_max.present? && versions.length > version_max
       self.version = (version || 1 ) + 1
