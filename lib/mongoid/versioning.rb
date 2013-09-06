@@ -127,6 +127,7 @@ module Mongoid
     def previous_revision
       _loading_revision do
         self.class.unscoped.
+          with(self.mongo_session.options).
           where(_id: id).
           any_of({ version: version }, { version: nil }).first
       end
