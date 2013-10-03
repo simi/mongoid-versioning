@@ -43,6 +43,11 @@ person.versionless do |doc|
 end
 ```
 
+## Authors
+
+* extracted from [Mongoid](github.com/mongoid/mongoid) by [@simi](https://github.com/simi)
+* [errors fixed](https://github.com/simi/mongoid-versioning/pull/1) by awesome [@gautamrege](https://github.com/gautamrege)
+
 ## Contributing
 
 1. Fork it
