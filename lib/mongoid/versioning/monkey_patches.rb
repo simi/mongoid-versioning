@@ -322,29 +322,3 @@ module Mongoid
     end
   end
 end
-
-module Mongoid
-  module Sessions
-    module ClassMethods
-      # Get the collection for this model from the session. Will check for an
-      # overridden collection name from the store_in macro or the collection
-      # with a pluralized model name.
-      #
-      # @example Get the model's collection.
-      #   Model.collection
-      #
-      # @return [ Moped::Collection ] The collection.
-      #
-      # @since 3.0.0
-      def collection
-        if opts = persistence_options
-          coll = mongo_session.with(opts)[opts[:collection] || collection_name]
-          clear_persistence_options unless validating_with_query? || _loading_revision?
-          coll
-        else
-          mongo_session[collection_name]
-        end
-      end
-    end
-  end
-end
