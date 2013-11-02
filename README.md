@@ -12,7 +12,7 @@ gem 'mongoid-versioning', github: 'simi/mongoid-versioning'
 
 And then execute:
 
-    $ bundle
+    bundle
 
 ## Usage
 
