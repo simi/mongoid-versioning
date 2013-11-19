@@ -115,6 +115,13 @@ module Mongoid
 
     private
 
+    def clone_document
+      attrs = as_document.__deep_copy__
+      attrs["version"] = 1 if attrs.delete("versions")
+      process_localized_attributes(attrs)
+      attrs
+    end
+
     # Find the previous version of this document in the database, or if the
     # document had been saved without versioning return the persisted one.
     #

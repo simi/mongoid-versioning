@@ -497,4 +497,30 @@ describe Mongoid::Versioning do
     end
   end
 
+  describe ".clone" do
+
+    context "when document is not persisted" do
+
+      let(:wiki) do
+        WikiPage.new
+      end
+
+      context "when versions exists" do
+
+        before do
+          wiki[:versions] = [ { title: "1" } ]
+        end
+
+        let(:copy) { wiki.clone }
+
+        it "does not copy the versions" do
+          expect(copy.versions).to eq([])
+        end
+
+        it "resets the document version" do
+          expect(copy.version).to eq(1)
+        end
+      end
+    end
+  end
 end
