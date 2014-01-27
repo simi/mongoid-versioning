@@ -301,16 +301,16 @@ module Mongoid
       #   Person.instantiate(:title => "Sir", :age => 30)
       #
       # @param [ Hash ] attrs The hash of attributes to instantiate with.
-      # @param [ Integer ] criteria_instance_id The criteria id that
+      # @param [ Integer ] __selected_fields The selected fields that
       #   instantiated the document.
       #
       # @return [ Document ] A new document.
       #
       # @since 1.0.0
-      def instantiate(attrs = nil, criteria_instance_id = nil)
+      def instantiate(attrs = nil, selected_fields = nil)
         attributes = attrs || {}
         doc = allocate
-        doc.criteria_instance_id = criteria_instance_id
+        doc.__selected_fields = selected_fields
         doc.instance_variable_set(:@attributes, attributes)
         doc.apply_defaults
         yield(doc) if block_given?
