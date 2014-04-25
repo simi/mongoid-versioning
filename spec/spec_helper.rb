@@ -68,6 +68,8 @@ RSpec.configure do |config|
       Mongoid::Threaded.sessions[:default].drop
     end
   end
+  
+  config.raise_errors_for_deprecations!
 
   # Filter out MongoHQ specs if we can't connect to it.
   config.filter_run_excluding(config: ->(value){
