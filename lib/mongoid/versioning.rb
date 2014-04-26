@@ -113,6 +113,20 @@ module Mongoid
       result || self
     end
 
+    # Are we in versionless mode? This is true if in a versionless block on the
+    # document.
+    #
+    # @example Is the document in versionless mode?
+    #   document.versionless?
+    #
+    # @return [ true, false ] Is the document not currently versioning.
+    #
+    # @since 2.0.0
+    def versionless?
+      @versionless ||= false
+    end
+
+
     private
 
     def clone_document
@@ -151,19 +165,6 @@ module Mongoid
     # @since 2.0.0
     def revisable?
       versioned_attributes_changed? && !versionless?
-    end
-
-    # Are we in versionless mode? This is true if in a versionless block on the
-    # document.
-    #
-    # @example Is the document in versionless mode?
-    #   document.versionless?
-    #
-    # @return [ true, false ] Is the document not currently versioning.
-    #
-    # @since 2.0.0
-    def versionless?
-      @versionless ||= false
     end
 
     # Filters fields that should not be versioned out of an attributes hash.
