@@ -45,7 +45,7 @@ end
 
 ## Authors
 
-* extracted from [Mongoid](github.com/mongoid/mongoid) by [@simi](https://github.com/simi)
+* extracted from [Mongoid](https://github.com/mongoid/mongoid) by [@simi](https://github.com/simi)
 * [errors fixed](https://github.com/simi/mongoid-versioning/pull/1) by awesome [@gautamrege](https://github.com/gautamrege)
 * [removed IdentityMap code](https://github.com/simi/mongoid-versioning/pull/2) by fabulous [@deevis](https://github.com/deevis)
 
