@@ -197,6 +197,8 @@ describe Mongoid::Versioning do
         WikiPage.with(database: "mongoid_test_alt").create!(description: "1",title: title)
       end
 
+      let(:page_id){ page.id}
+
       context "when the document is persisted once" do
 
         it "returns 1" do
@@ -225,11 +227,11 @@ describe Mongoid::Versioning do
         end
 
         it "persists to specified database" do
-          expect(WikiPage.with(database: "mongoid_test_alt").find_by(:title => title)).to_not be_nil
+          expect(WikiPage.with(database: "mongoid_test_alt").find(page_id)).to_not be_nil
         end
 
         it "persists the versions to specified database" do
-          expect(WikiPage.with(database: "mongoid_test_alt").find_by(:title => title).version).to eq(4)
+          expect(WikiPage.with(database: "mongoid_test_alt").find(page_id).version).to eq(4)
         end
       end
     end
