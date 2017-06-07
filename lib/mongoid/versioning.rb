@@ -132,7 +132,7 @@ module Mongoid
     def clone_document
       attrs = as_document.__deep_copy__
       attrs["version"] = 1 if attrs.delete("versions")
-      process_localized_attributes(attrs)
+      process_localized_attributes(self, attrs)
       attrs
     end
 
@@ -148,7 +148,7 @@ module Mongoid
     def previous_revision
       _loading_revision do
         self.class.unscoped.
-          with(self.mongo_session.options).
+          with(self.mongo_client.options).
           where(_id: id).
           any_of({ version: version }, { version: nil }).first
       end
